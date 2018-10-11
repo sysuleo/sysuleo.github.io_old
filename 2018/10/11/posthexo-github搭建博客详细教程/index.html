@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com/child">
-  <title>posthexo+github搭建博客详细教程 | LiuwBlog</title>
+  <title>Hexo+github搭建博客详细教程 | LiuwBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.node.js安装下载安装 node.js（https://nodejs.org/en/） 如下图，选择左边的8.12.0LTS版 注：①安装途中可以自定义安装地址②安装时会默认ADD to PATH，直接下一步即可">
+  <meta name="description" content="#Hexo+github搭建博客详细教程 ##node.js安装下载安装 node.js（https://nodejs.org/en/） 如下图，选择左边的8.12.0LTS版 注：①安装途中可以自定义安装地址②安装时会默认ADD to PATH，直接下一步即可 ###测试安装情况首先用Win+R调出运行窗口，然后输入cmd打开cmd窗口 ##安装git官网下载git（https://gitfor">
 <meta property="og:type" content="article">
-<meta property="og:title" content="posthexo+github搭建博客详细教程">
+<meta property="og:title" content="Hexo+github搭建博客详细教程">
 <meta property="og:url" content="http://yoursite.com/child/2018/10/11/posthexo-github搭建博客详细教程/index.html">
 <meta property="og:site_name" content="LiuwBlog">
-<meta property="og:description" content="1.node.js安装下载安装 node.js（https://nodejs.org/en/） 如下图，选择左边的8.12.0LTS版 注：①安装途中可以自定义安装地址②安装时会默认ADD to PATH，直接下一步即可">
+<meta property="og:description" content="#Hexo+github搭建博客详细教程 ##node.js安装下载安装 node.js（https://nodejs.org/en/） 如下图，选择左边的8.12.0LTS版 注：①安装途中可以自定义安装地址②安装时会默认ADD to PATH，直接下一步即可 ###测试安装情况首先用Win+R调出运行窗口，然后输入cmd打开cmd窗口 ##安装git官网下载git（https://gitfor">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-11T13:18:33.051Z">
+<meta property="og:updated_time" content="2018-10-11T14:47:22.010Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="posthexo+github搭建博客详细教程">
-<meta name="twitter:description" content="1.node.js安装下载安装 node.js（https://nodejs.org/en/） 如下图，选择左边的8.12.0LTS版 注：①安装途中可以自定义安装地址②安装时会默认ADD to PATH，直接下一步即可">
+<meta name="twitter:title" content="Hexo+github搭建博客详细教程">
+<meta name="twitter:description" content="#Hexo+github搭建博客详细教程 ##node.js安装下载安装 node.js（https://nodejs.org/en/） 如下图，选择左边的8.12.0LTS版 注：①安装途中可以自定义安装地址②安装时会默认ADD to PATH，直接下一步即可 ###测试安装情况首先用Win+R调出运行窗口，然后输入cmd打开cmd窗口 ##安装git官网下载git（https://gitfor">
   
     <link rel="alternative" href="/atom.xml" title="LiuwBlog" type="application/atom+xml">
   
@@ -161,7 +161,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      posthexo+github搭建博客详细教程
+      Hexo+github搭建博客详细教程
     </h1>
   
 
@@ -174,8 +174,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.node.js安装<br>下载安装 node.js（<a href="https://nodejs.org/en/）" target="_blank" rel="noopener">https://nodejs.org/en/）</a> 如下图，选择左边的8.12.0LTS版</p>
-<p>注：①安装途中可以自定义安装地址<br>②安装时会默认ADD to PATH，直接下一步即可</p>
+        <p>#Hexo+github搭建博客详细教程</p>
+<p>##<strong>node.js安装</strong><br>下载安装 node.js（<a href="https://nodejs.org/en/）" target="_blank" rel="noopener">https://nodejs.org/en/）</a> 如下图，选择左边的8.12.0LTS版</p>
+<p><code>注：①安装途中可以自定义安装地址<br>②安装时会默认ADD to PATH，直接下一步即可</code></p>
+<p>###测试安装情况<br>首先用Win+R调出运行窗口，然后输入cmd打开cmd窗口</p>
+<p>##安装git<br>官网下载git（<a href="https://gitforwindows.org/）" target="_blank" rel="noopener">https://gitforwindows.org/）</a><br>除了下面两步改一下，其它都是Next<br>这里左下角打勾，然后NEXT</p>
+<p>这里选择第二项，然后Next</p>
+<p>##github SSH配置（与github关联）<br>找到git安装目录，打开git-bash，然后输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen –t rsa –C “邮箱号（GitHub账号）”</span><br></pre></td></tr></table></figure>
+<p>然后一直回车</p>
+<p>打开GitHub，选择Settings</p>
+<p>记事本打开刚刚生成的.ssh文件下的id_ras文件，复制到Key栏</p>
+<p>接着打开git，测试连接是否成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>如果提示Hi sysuleo You’ve successfully authenticated, but GitHub does not provide shell access.说明连接成功。</p>
+<p>##hexo安装<br>首先，我在E盘新建了个Myblog文件夹，然后打开cmd窗口，cd到Myblog文件夹，然后输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line">$ npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">$ hexo init liuwBlog(后面是你的博客名)</span><br></pre></td></tr></table></figure>
+<p>##安装依赖</p>
+<p>cd 到博客目录，然后输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br><span class="line"></span><br><span class="line">$ hexo s –p 5555</span><br></pre></td></tr></table></figure>
+<p>然后在浏览器输入<a href="http://localhost:5555就是我们的博客初始界面" target="_blank" rel="noopener">http://localhost:5555就是我们的博客初始界面</a></p>
+<p>##发布到github</p>
+<p>在Github上创建名字为XXX.github.io的项目，XXX为自己的github用户名。请务必注意该repo的名字，必须保持格式<username>.github.io，其中<username>替换成你的github账户名，这里假定创建的repo为tobiasalin.github.io</username></username></p>
 
       
 
