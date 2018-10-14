@@ -148,6 +148,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-what-do-we-understand-翻译-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/14/what-do-we-understand-翻译-二/">what do we understand about Convolutional Networks 翻译(二)</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/14/what-do-we-understand-翻译-二/" class="archive-article-date">
+  	<time datetime="2018-10-14T01:58:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第二章-多层网络"><a href="#第二章-多层网络" class="headerlink" title="第二章 多层网络"></a>第二章 多层网络</h1><p>本章简要概述了计算机视觉中最突出的多层网络。值得注意的是，虽然本章涵盖了文献中最重要的贡献，但它不会对这些论文进行综合地回顾，因为这些可在通过精度论文获得。相反，本章的<strong>目的是为文献的其余部分设置阶段，并详细介绍和讨论目前应用于视觉处理的卷积网络</strong>。</p>
+<h2 id="2-1多层网络"><a href="#2-1多层网络" class="headerlink" title="2.1多层网络"></a>2.1多层网络</h2><p>在成功开发基于深度学习的网络之前，用于识别的最先进的计算机视觉系统依赖于<strong>两个独立但互补的步骤</strong>。首先，通过一组手工设计的操作（例如，具有基础数据，局部或全局编码方法的卷积）将输入数据转换为合适的形式。该变换通常需要找到输入的具体或抽象的特征，同时根据手头的task加入几个不变性。这种转换的目标是为了更容易被分类器分类。其次，变换后的数据用于训练某种分类器（例如支持向量机）以识别输入信号的内容。因此<strong>任何分类器的性能通常都严重受到转换的影响</strong>。</p>
+<p>多层结构网络<strong>不仅要学习分类器，而且还要直接从数据中学习所需的转换操作</strong>，从而可以从不同视角看问题。这种学习形式通常被称为<strong>特征学习</strong>，当在多层网络的上下文中使用时称为<strong>深度学习</strong>。</p>
+<p>多层结构可以定义为<strong>从输入中提取多个抽象的有用信息的计算模型</strong>。通常，多层网络在较高网络层强调输入中的重要信息，同时对较不显著的变化越来越robust。大多数多层网络<strong>使用交替的线性和非线性函数堆叠简单的构建块模块</strong>。多年来，提出了大量的各种多层网络，本节将介绍计算机视觉应用中这些最突出的网络。特别是，由于其突出性，人工神经网络将成为焦点。为了简洁起见，下面将更简单地将这种网络称为神经网络。</p>
+<h3 id="2-1-1神经网络"><a href="#2-1-1神经网络" class="headerlink" title="2.1.1神经网络"></a>2.1.1神经网络</h3><p>典型的神经网络结构由输入层x，输出层y和多个隐藏层h组成，其中每个层由多个单元组成，如图2.1所示。 通常，每个隐藏单元hj接收来自前一层的所有单元的输入，并且被定义为输入的加权组合，随后是非线性，根据<br><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kbq3hlrj20br01twe9.jpg" alt=""></p>
+<p>其中，Wij是控制输入单元和隐藏单元之间连接强度的权重，bj是隐藏单元的小偏差，F（）是一些非线性函数，例如sigmoid。</p>
+<p>深度神经网络可以被视为Rosenblatt的感知器和多层感知器的现代实例。 尽管神经网络模型已存在多年（即自1960年代以来），但直到最近才被大量使用。 这种延迟有很多原因。 最初的负面结果显示<strong>感知器无法对XOR这样的简单操作进行建模</strong>，阻碍了对感知器进行一段时间的进一步研究，直到它们被推广到多层。 此外，<strong>缺乏适当的训练算法会减慢进展，直到反向传播算法的普及</strong>。 然而，阻碍多层神经网络发展的<strong>更大障碍是它们依赖于非常大量的参数</strong>，这反过来意味着需要<strong>大量的训练数据和计算资源</strong>来支持参数的学习。</p>
+<p><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kbq5unrj20be082js0.jpg" alt="典型的神经网络"></p>
+<p>使用<strong>受限玻尔兹曼机器（RBM）</strong>，在深度神经网络领域取得重大进展的主要贡献是<strong>分层无监督预训练</strong>。 受限制的Boltzman机器可以看作是两层神经网络，在其受限制的形式中，只允许前馈连接。</p>
+<p>在图像识别的背景下，用于训练RBM的无监督学习方法可以<strong>归纳为三个步骤</strong>。 首先，对于每个像素xi，并且以一组随机权重wij和偏差bj开始，每个单元的隐藏状态hj被设置为1，概率为pj。 概率定义为<br>！<a href="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kbq54vnj20cq01qt8h.jpg" target="_blank" rel="noopener"></a></p>
+<p>其中，σ（y）= 1 /（1 + exp（-y））。 第二，一旦基于等式2.2随机地设置了所有隐藏状态，通过概率pi，将每个像素xi设置为1来执行重建图像的尝试。 第三，通过基于由给出的重建误差更新权重和偏差来校正隐藏单元。<br><img src="http://wx1.sinaimg.cn/large/8746d7begy1fw7kbq5q53j20d2016gle.jpg" alt=""></p>
+<p>其中α是学习率，<xi hj=""> 是像素Xi和隐藏单元hj在相关联的次数。整个过程重复N次或直到误差下降到预设阈值τ。在训练一个层之后，其输出被用作层次结构中下一层的输入，该层又按照相同的过程进行训练。通常，在预训练所有网络层之后，通过使用梯度下降的误差反向传播，它们进一步通过标记数据进行微调。使用该<strong>分层无监督预训练允许训练深度神经网络而不需要大量标记数据</strong>，因为无监督RBM预训练提供了用于经验上有用的初始化各种网络参数的方式。堆叠RBM的神经网络首先成功地用作降维，并应用于人脸识别，其中它们被看为一种自动编码器。简而言之，自动编码器可以定义为由两个主要部分组成的多层神经网络：首先，<strong>编码器将输入数据转换为特征向量</strong>;第二，<strong>解码器将生成的特征向量映射回输入空间</strong>;见图2.2。通过最小化输入与其重建版本之间的重建误差来学习自动编码器的参数。<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kbq6zsrj20sl0ah76j.jpg" alt=""></xi></p>
+<p>除了基于RBM的自动编码器之外，后来提出了几种类型的自动编码器。每个自动编码器都<strong>引入了一种不同的正则化方法</strong>，即使在执行不同的不变性时也能阻止网络过拟合。示例包括<strong>稀疏自动编码器（SAE），去噪自动编码器（DAE）和压缩自动编码器（CAE）</strong>。稀疏自动编码器允许中间特征的大小（即由编码器部分生成）大于输入的大小，同时通过错误输出来强制稀疏。相比之下，去噪自动编码器通过人为破坏重建清晰输入来达成重建的目标，目的是学习强robust的representation。类似地，压缩自动编码器构建通过进一步惩罚对噪声最敏感的单元来对自动编码器进行去噪处理。各种类型的自动编码器的更详细的介绍可以在别处找到。</p>
+<h3 id="2-1-2递归神经网络"><a href="#2-1-2递归神经网络" class="headerlink" title="2.1.2递归神经网络"></a>2.1.2递归神经网络</h3><p>在考虑依赖于顺序输入的任务时，最成功的多层架构之一是递归神经网络（RNN）。 如图2.3所示，RNN可以看作是一种特殊类型的神经网络，其中每个隐藏单元从当前时间输入的数据以及前一时间的状态获取输入。 RNN的输出定义为<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kbq6wxpj20ir0220sm.jpg" alt=""><br><img src="https://wx2.sinaimg.cn/mw1024/8746d7begy1fw7kbq7oeij20u00e5wh8.jpg" alt=""></p>
+<p>其中σ是非线性函数，wi和ui是控制当前和过去信息的相对重要性的参数。尽管RNN看起来是强大的网络结构，但它们的<strong>主要问题之一是对周期长的建模能力有限</strong>。这种限制<strong>归因于在通过多个时间步骤传播误差时可能发生的爆炸或消失梯度导致的训练差异</strong>。特别是，在训练期间，反向传播的梯度乘以从当前时间一直到初始时间的网络权重。因此，由于<strong>这种乘法积累，权重可以对传播的梯度具有非平凡的影响。如果权重很小，则梯度消失，而较大的权重导致梯度爆炸</strong>。为了纠正这种困难，引入了LSTM。</p>
+<p>LSTMs是循环网络，它进一步<strong>配备了存储或内存组件</strong>，如图2.4所示，随着时间的推移积累信息。LSTM的<strong>内存单元是门控的</strong>，这样就可以从它读取或写入信息。值得注意的是，LSTMs还包含一个<strong>遗忘门，允许网络在不再需要信息时删除信息</strong>。LSTMs由<strong>三个不同的门控制(输入门、遗忘门和输出门)</strong>，以及内存单元状态ct。输入门由最新的输入xt和前一个状态ht−1控制,它被定义为<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kcpp1bjj20ks01ta9z.jpg" alt=""></p>
+<p>其中，wi，ui，bi表示控制输入门的权重和偏差，σ通常是Sigmoid函数。 遗忘门同样被定义为<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kcponhhj20kj02jwef.jpg" alt=""></p>
+<p>它由相应的权重和偏差控制，wf，uf，bf。 可以说，LSTM<strong>最重要的方面是它可以应对梯度消失和梯度爆炸</strong>。 在确定存储器单元的状态时，通过<strong>遗忘和输入门状态的相加组合来实现该能力</strong>，该状态又控制信息是否经由输出门传递到另一个单元。 具体而言分两步计算。 首先，根据估计候选单元状态<br><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kcpqhp8j20l302jjrb.jpg" alt=""></p>
+<p>其中φ通常是双曲正切线（激活函数）。 其次，最终的单元状态最终由当前估计的状态gt和前一个状态ct-1控制，由输入和忘记门调制。<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kcpqv8zj20jm031q2t.jpg" alt=""></p>
+<p>最后，使用单元的状态以及当前和先前的输入，输出门的值和LSTM单元的输出可以根据<br><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kcpsg0nj20ra07ujrj.jpg" alt=""></p>
+<p><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kcpt8rkj20sn0gatd3.jpg" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/14/what-do-we-understand-翻译-二/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-what-do-we-understand翻译" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
