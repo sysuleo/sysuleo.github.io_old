@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>LiuwBlog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://cvweb.site/"/>
+  <updated>2018-10-15T12:54:37.928Z</updated>
+  <id>http://cvweb.site/</id>
+  
+  <author>
+    <name>LiuW</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>what do we understand about Convolutional Networks 翻译(三)</title>
+    <link href="http://cvweb.site/2018/10/15/what-do-we-understand-%E7%BF%BB%E8%AF%91-%E4%B8%89/"/>
+    <id>http://cvweb.site/2018/10/15/what-do-we-understand-翻译-三/</id>
+    <published>2018-10-15T08:50:33.000Z</published>
+    <updated>2018-10-15T12:54:37.928Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="2-1-3卷积网络"><a href="#2-1-3卷积网络" class="headerlink" title="2.1.3卷积网络"></a>2.1.3卷积网络</h2><p>卷积网络（ConvNets）是一种特殊类型的神经网络，特别适用于计算机视觉应用，因为它们能够通过局部连接（local connection）使representations分层抽象化。有两个关键的理念推动计算机视觉中卷积网络结构的成功。首先，ConvNets利用<strong>图像的2D结构以及邻域内的像素通常高度相关的特性</strong>。因此，ConvNets<strong>避免在所有像素之间使用一对一连接（即大多数神经网络的情况），而是使用分组连接</strong>。此外，ConvNet架构<strong>依赖于特征共享</strong>，因此每个通道（或输出特征图）由在所有位置使用相同滤波器的卷积生成，如图2.5所示。与标准神经网络相比，ConvNets的这一重要特性导致了一种<strong>更少参数的架构</strong>。其次，ConvNets还<strong>引入了池化层，该步骤提供了一定程度的平移不变性，使得架构不受位置微小变化的影响</strong>。值得注意的是，由于网络接收域的大小增加，池化还允许网络逐渐看到输入的较大部分。接收域大小的增加（加上输入分辨率的降低）使得在<strong>网络深度增加时表示更抽象的特征</strong>。例如，对于物体识别，ConvNets layers从关注对象的边缘开始然后在较高层覆盖整个对象的特征。<br><img src="https://wx4.sinaimg.cn/mw1024/8746d7begy1fw976rxcgfj20tm0bx0vb.jpg" alt=""></p><p>卷积网络的结构很大程度上受到了视觉皮层的启发，如Hubel和Wiesel的开创性工作所述（在第3章中进一步讨论）。实际上，最早的卷积网络实例似乎是Fukushima的Neocognitron，它也依赖于局部连接，其中每个特征图最大限度地响应特定的特征类型。 Neocognitron由一系列K层组成，其中每层交替显示S细胞单元Usl和复杂细胞单元Ucl，它们分别模拟生物简单和复杂细胞中发生的处理，如图所示2.6。简单单元单元执行类似于局部卷积的操作，然后执行Rectified线性单元（ReLU）非线性，而复杂单元执行类似于均值滤波器。该模型还包括一个非线性函数，以实现类似于当代ConvNets中的正则化的功能。<br><img src="https://wx2.sinaimg.cn/mw1024/8746d7begy1fw976rzoobj20mm0av76e.jpg" alt=""></p><p>与大多数标准ConvNet架构相反，Neocognitron<strong>不需要标记数据进行学习，因为它是基于自组织图设计的</strong>，它可以学习通过重复呈现一组刺激图像（stimulate images）来了解连续层之间的局部连接。特别地，Neocognitron训练了输入特征图和简单细胞层之间的连接（简单细胞层和复杂细胞层之间的连接是预先确定的），并且学习过程可以概括为两个步骤。首先，每当<strong>在输入处呈现新的刺激时，选择最大响应它的简单细胞作为该刺激类型的表征(representation)</strong>。其次，<strong>每次响应相同的输入类型时，输入和表征单元之间的连接就会得到加强</strong>。值得注意的是，简单的单元层被组织在不同的组或平面中，使得<strong>每个平面仅响应一种刺激类型（即，类似于现在的ConvNet架构中的特征图）</strong>。对Neocognitron的后续扩展包括监督学习以及自上而下的注意机制。</p><p>在最近的计算机视觉应用中部署的大多数ConvNets架构受到LeCun在1998年提出的成功架构的启发，现在称为LeNet，用于手写识别。如文献所述，经典卷积网络由四个基本处理层组成：<strong>（i）卷积层，（ii）非线性或修正层，（iii）归一化层和（iv）池化层</strong>。如上所述，这些成分在Neocognitron中也是重要部分。 <strong>LeNet的一个亮点是反向传播</strong>，以便相对<strong>高效地学习卷积参数</strong>。ConvNets是较优化的架构，与完全连接的神经网络相比，它需要的<strong>参数要少得多</strong>，但它们的<strong>主要缺点仍然是它们严重依赖训练数据和标记数据</strong>。这种数据依赖性可能是2012年前ConvNets未被广泛使用的主要原因之一，因为<strong>大型ImageNet数据集和相应的计算资源的可用性</strong>使得ConvNets的重新兴起。 ConvNets在ImageNet上的成功引发了各种ConvNet结构的突飞猛进，该领域的大多数贡献仅仅基于ConvNets的基本结构块的不同变化，这将在后面的2.2节中讨论。</p><h2 id="2-1-4生成对抗网络"><a href="#2-1-4生成对抗网络" class="headerlink" title="2.1.4生成对抗网络"></a>2.1.4生成对抗网络</h2><p>生成性对抗网络（GAN）是相对较新的模型。 GAN首先在2014年引入，虽然它们本身没有提供不同的架构（例如，就新颖的网络结构块而言），但它们具有一些特殊性，这使得它们成为一种稍微不同的多层网络。 </p><p>GAN响应的一个关键挑战是采用<strong>无监督学习的方法，不需要标记数据</strong>。<br>典型的GAN由两个竞争块或子网组成，如图2.7所示;<strong>生成器网络G（z;θg）（generator network）和鉴别器网络D（x;θd）（discriminator network）</strong>，其中z是输入的随机噪声，x是实际输入数据（例如图像），θg和θd是两者的参数。每个块可以由任何先前定义的多层网络结构制成。在最初的论文中，生成器和鉴别器都是多层全连接网络。<strong>训练鉴别器D以识别来自生成器的数据并且以概率pd分配标签“假”，同时以概率1-pd将标签“真实”分配给真实输入数据</strong>。另外，不断优化生成器网络使它能够生成欺骗鉴别器的伪输出。这两个块在几个步骤中交替训练，其中训练过程的理想结果是<strong>鉴别器对真实数据和假数据各分配50％的概率</strong>。换句话说，在收敛之后，<strong>生成器能够从随机输入生成实际数据</strong>。</p><p><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw976rt57oj20mh0argmh.jpg" alt=""></p><p>自最初论文以来，许多贡献通过使用更强大的多层架构作为网络的主干参与增强GAN的功能（例如，用于鉴别器和反卷积网络的预训练卷积网络，学习生成器的上采样滤波器） 。GAN的一些成功应用包括：<br>文本到图像合成：网络的输入是文本描述，输出是要渲染的图像<br>图像超分辨率：从较低的生成逼真的高分辨率图像分辨率输入）<br>图像修复：从输入图像中填充缺失信息的点/块<br>纹理合成：从输入噪声合成真实纹理。</p><h2 id="2-1-5多层网络"><a href="#2-1-5多层网络" class="headerlink" title="2.1.5多层网络"></a>2.1.5多层网络</h2><p>正如前面所说，各种多层架构的成功<strong>很大程度上取决于他们训练过程</strong>。 虽然神经网络通常<strong>依赖于无监督的预训练</strong>，如2.1.1节所述，但它们通常遵循多层网路的基本训练策略，并且是完全监督的。 训练过程通常<strong>基于梯度下降法进行反向传播</strong>。 梯度下降因其简单性而广泛用于训练多层架构。 它依赖于最小化平滑误差函数E（w），迭代过程如下<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw976qtq46j20jq035746.jpg" alt=""></p><p>其中w代表网络的参数，α是可以控制收敛速度的学习速率，∂E（w）/∂w是在训练集上计算的误差梯度。这种简单的梯度下降方法<strong>特别适用于训练多层网络，这是因为使用链式法则进行反向传播并计算相对于不同层的各种网络参数的误差导数</strong>。虽然反向传播可追溯到多年前，但它在<strong>多层网络的背景下才得到了普及</strong>。在实践中，使用<strong>随机梯度下降（SGD），其从连续的相对小的子集中近似取训练集的误差梯度</strong>。</p><p>梯度下降算法的主要问题之一是<strong>学习率α的选择</strong>。学习率太小会导致收敛缓慢，而较大的学习率会导致发散。因此，提出了几种方法来进一步改进简单的随机梯度下降优化方法。最简单的方法称为<strong>momentum随机梯度下降</strong>。它<strong>记录从一次迭代到另一次迭代的更新量，如果梯度指向同一方向，就进一步推动更新</strong>，如下：<br><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw976qsw9bj20kd02f3yf.jpg" alt=""></p><p>用γ控制momentum。另一种简单的方法涉及<strong>根据固定的时间表以递减的方式设置学习速率</strong>，但这远非理想，因为该时间表必须在训练过程之前预先设定并且完全独立于数据。其他更复杂的方法（例如Adagrad，Adadelta，Adam）建议通过<strong>对频繁变化的参数执行较小的更新以及对不频繁变化参数进行更大更新</strong>，使训练期间的学习速率适应每个参数wi。在其他地方可以找到这些算法的不同版本之间的详细比较。</p><p>使用梯度下降及其变体进行训练的主要缺点是需要大量标记数据。解决这一困难的一种方法是采用<strong>无监督学习</strong>。用于训练一些浅层ConvNet架构的无监督方法是基于预测稀疏分解（Predictive Sparse Decomposition）。 Predictive Sparse Decomposition学习一组滤波器的超完备集，其可用于图像重建。该方法特别适用于学习卷积体系结构的参数，因为该算法用于学习重建图像的基函数。具体地，预测稀疏分解（PSD）建立在稀疏编码算法的基础上，该算法试图通过基本子集的线性组合来找到输入信号X的有效特征Y。形式上，稀疏编码的问题转化为最小化问题，如下:<br><img src="https://wx2.sinaimg.cn/mw1024/8746d7begy1fw976qt2cuj20i6029mx0.jpg" alt=""></p><p>PSD采取稀疏编码在卷积框架下最小化重建误差的思想:<br><img src="https://wx4.sinaimg.cn/mw1024/8746d7begy1fw976rnpawj20o802jglk.jpg" alt=""></p><p>其中F（X; G，W，D）= G tanh（W X + D），W，D和G分别是网络的权重，偏差和增益（或归一化因子）。 通过最小化方程2.14中定义的损失函数，算法学习表征Y，其重建输入的patch X，类似于预测表征F。由于方程的第二项，学习的表征也将是稀疏的。 在实践中，误差在两个交替步骤中被最小化，其中<strong>参数（B，G，W，D）是固定的并且在Y上执行最小化</strong>。然后，<strong>表征Y被固定，同时最小化其他参数</strong>。值得注意的是，PSD应用于一个分段过程中，每个参数集(G, W, D)都是通过从输入图像中重构不同的patch来学习的。 换句话说，通过将重建聚焦在输入图像的不同部分上来学习不同的内核集。</p><h2 id="2-1-6-迁移学习"><a href="#2-1-6-迁移学习" class="headerlink" title="2.1.6 迁移学习"></a>2.1.6 迁移学习</h2><p>训练多层网络架构的一个意想不到的好处是，<strong>学习到的特征在不同的数据集甚至不同的任务中具有惊人的适应性</strong>。例子包括使用网络训练与ImageNet识别:加州理工学院- 101等其他<strong>物体识别</strong>数据集。其他识别任务,比如<strong>纹理识别</strong>。其他应用,如<strong>物体检测</strong>,甚至基于视频的任务,比如<strong>视频动作识别</strong>。</p><p>多层架构在不同的数据集和任务中提取出来的特征的适应性，可以<strong>归因于它们的层次性，从简单的、局部的到抽象的、全局的</strong>。因此，在<strong>较低层次提取的特征往往在不同任务之间很常见，从而使多层网络结构更易于转移学习</strong>。<br>系统地探索了不同网络和任务中特征的可转移性，揭示了在迁移学习时需要考虑的几个好实践。首先，研究表明，与对整个网络进行微调相比，<strong>只对更高层次进行微调可以获得系统更好的性能</strong>。其次，本研究表明，<strong>任务类型越不同，迁移学习效率越低</strong>。第三，更令人惊讶的是，研究人员发现，<strong>即使在对网络在初始任务下的性能进行微调之后，网络的性能也不会受到特别的阻碍</strong>。</p><p>最近，一些实验试图通过将学习作为一个连续的两步过程来进一步加强网络的迁移学习能力。首先，<strong>执行快速学习步骤，其中网络是针对特定任务进行优化的</strong>。其次，在<strong>全局学习步骤中，参数会进一步更新，试图在不同任务之间最小化错误。</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;2-1-3卷积网络&quot;&gt;&lt;a href=&quot;#2-1-3卷积网络&quot; class=&quot;headerlink&quot; title=&quot;2.1.3卷积网络&quot;&gt;&lt;/a&gt;2.1.3卷积网络&lt;/h2&gt;&lt;p&gt;卷积网络（ConvNets）是一种特殊类型的神经网络，特别适用于计算机视觉应用，因为
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>what do we understand about Convolutional Networks 翻译(二)</title>
+    <link href="http://cvweb.site/2018/10/14/what-do-we-understand-%E7%BF%BB%E8%AF%91-%E4%BA%8C/"/>
+    <id>http://cvweb.site/2018/10/14/what-do-we-understand-翻译-二/</id>
+    <published>2018-10-14T01:58:41.000Z</published>
+    <updated>2018-10-14T03:09:23.500Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第二章-多层网络"><a href="#第二章-多层网络" class="headerlink" title="第二章 多层网络"></a>第二章 多层网络</h1><p>本章简要概述了计算机视觉中最突出的多层网络。值得注意的是，虽然本章涵盖了文献中最重要的贡献，但它不会对这些论文进行综合地回顾，因为这些可在通过精度论文获得。相反，本章的<strong>目的是为文献的其余部分设置阶段，并详细介绍和讨论目前应用于视觉处理的卷积网络</strong>。</p><h2 id="2-1多层网络"><a href="#2-1多层网络" class="headerlink" title="2.1多层网络"></a>2.1多层网络</h2><p>在成功开发基于深度学习的网络之前，用于识别的最先进的计算机视觉系统依赖于<strong>两个独立但互补的步骤</strong>。首先，通过一组手工设计的操作（例如，具有基础数据，局部或全局编码方法的卷积）将输入数据转换为合适的形式。该变换通常需要找到输入的具体或抽象的特征，同时根据手头的task加入几个不变性。这种转换的目标是为了更容易被分类器分类。其次，变换后的数据用于训练某种分类器（例如支持向量机）以识别输入信号的内容。因此<strong>任何分类器的性能通常都严重受到转换的影响</strong>。</p><p>多层结构网络<strong>不仅要学习分类器，而且还要直接从数据中学习所需的转换操作</strong>，从而可以从不同视角看问题。这种学习形式通常被称为<strong>特征学习</strong>，当在多层网络的上下文中使用时称为<strong>深度学习</strong>。</p><p>多层结构可以定义为<strong>从输入中提取多个抽象的有用信息的计算模型</strong>。通常，多层网络在较高网络层强调输入中的重要信息，同时对较不显著的变化越来越robust。大多数多层网络<strong>使用交替的线性和非线性函数堆叠简单的构建块模块</strong>。多年来，提出了大量的各种多层网络，本节将介绍计算机视觉应用中这些最突出的网络。特别是，由于其突出性，人工神经网络将成为焦点。为了简洁起见，下面将更简单地将这种网络称为神经网络。</p><h3 id="2-1-1神经网络"><a href="#2-1-1神经网络" class="headerlink" title="2.1.1神经网络"></a>2.1.1神经网络</h3><p>典型的神经网络结构由输入层x，输出层y和多个隐藏层h组成，其中每个层由多个单元组成，如图2.1所示。 通常，每个隐藏单元hj接收来自前一层的所有单元的输入，并且被定义为输入的加权组合，随后是非线性，根据<br><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kbq3hlrj20br01twe9.jpg" alt=""></p><p>其中，Wij是控制输入单元和隐藏单元之间连接强度的权重，bj是隐藏单元的小偏差，F（）是一些非线性函数，例如sigmoid。</p><p>深度神经网络可以被视为Rosenblatt的感知器和多层感知器的现代实例。 尽管神经网络模型已存在多年（即自1960年代以来），但直到最近才被大量使用。 这种延迟有很多原因。 最初的负面结果显示<strong>感知器无法对XOR这样的简单操作进行建模</strong>，阻碍了对感知器进行一段时间的进一步研究，直到它们被推广到多层。 此外，<strong>缺乏适当的训练算法会减慢进展，直到反向传播算法的普及</strong>。 然而，阻碍多层神经网络发展的<strong>更大障碍是它们依赖于非常大量的参数</strong>，这反过来意味着需要<strong>大量的训练数据和计算资源</strong>来支持参数的学习。</p><p><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kbq5unrj20be082js0.jpg" alt="典型的神经网络"></p><p>使用<strong>受限玻尔兹曼机器（RBM）</strong>，在深度神经网络领域取得重大进展的主要贡献是<strong>分层无监督预训练</strong>。 受限制的Boltzman机器可以看作是两层神经网络，在其受限制的形式中，只允许前馈连接。</p><p>在图像识别的背景下，用于训练RBM的无监督学习方法可以<strong>归纳为三个步骤</strong>。 首先，对于每个像素xi，并且以一组随机权重wij和偏差bj开始，每个单元的隐藏状态hj被设置为1，概率为pj。 概率定义为<br>！<a href="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kbq54vnj20cq01qt8h.jpg" target="_blank" rel="noopener"></a></p><p>其中，σ（y）= 1 /（1 + exp（-y））。 第二，一旦基于等式2.2随机地设置了所有隐藏状态，通过概率pi，将每个像素xi设置为1来执行重建图像的尝试。 第三，通过基于由给出的重建误差更新权重和偏差来校正隐藏单元。<br><img src="http://wx1.sinaimg.cn/large/8746d7begy1fw7kbq5q53j20d2016gle.jpg" alt=""></p><p>其中α是学习率，<xi hj=""> 是像素Xi和隐藏单元hj在相关联的次数。整个过程重复N次或直到误差下降到预设阈值τ。在训练一个层之后，其输出被用作层次结构中下一层的输入，该层又按照相同的过程进行训练。通常，在预训练所有网络层之后，通过使用梯度下降的误差反向传播，它们进一步通过标记数据进行微调。使用该<strong>分层无监督预训练允许训练深度神经网络而不需要大量标记数据</strong>，因为无监督RBM预训练提供了用于经验上有用的初始化各种网络参数的方式。堆叠RBM的神经网络首先成功地用作降维，并应用于人脸识别，其中它们被看为一种自动编码器。简而言之，自动编码器可以定义为由两个主要部分组成的多层神经网络：首先，<strong>编码器将输入数据转换为特征向量</strong>;第二，<strong>解码器将生成的特征向量映射回输入空间</strong>;见图2.2。通过最小化输入与其重建版本之间的重建误差来学习自动编码器的参数。<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kbq6zsrj20sl0ah76j.jpg" alt=""></xi></p><p>除了基于RBM的自动编码器之外，后来提出了几种类型的自动编码器。每个自动编码器都<strong>引入了一种不同的正则化方法</strong>，即使在执行不同的不变性时也能阻止网络过拟合。示例包括<strong>稀疏自动编码器（SAE），去噪自动编码器（DAE）和压缩自动编码器（CAE）</strong>。稀疏自动编码器允许中间特征的大小（即由编码器部分生成）大于输入的大小，同时通过错误输出来强制稀疏。相比之下，去噪自动编码器通过人为破坏重建清晰输入来达成重建的目标，目的是学习强robust的representation。类似地，压缩自动编码器构建通过进一步惩罚对噪声最敏感的单元来对自动编码器进行去噪处理。各种类型的自动编码器的更详细的介绍可以在别处找到。</p><h3 id="2-1-2递归神经网络"><a href="#2-1-2递归神经网络" class="headerlink" title="2.1.2递归神经网络"></a>2.1.2递归神经网络</h3><p>在考虑依赖于顺序输入的任务时，最成功的多层架构之一是递归神经网络（RNN）。 如图2.3所示，RNN可以看作是一种特殊类型的神经网络，其中每个隐藏单元从当前时间输入的数据以及前一时间的状态获取输入。 RNN的输出定义为<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kbq6wxpj20ir0220sm.jpg" alt=""><br><img src="https://wx2.sinaimg.cn/mw1024/8746d7begy1fw7kbq7oeij20u00e5wh8.jpg" alt=""></p><p>其中σ是非线性函数，wi和ui是控制当前和过去信息的相对重要性的参数。尽管RNN看起来是强大的网络结构，但它们的<strong>主要问题之一是对周期长的建模能力有限</strong>。这种限制<strong>归因于在通过多个时间步骤传播误差时可能发生的爆炸或消失梯度导致的训练差异</strong>。特别是，在训练期间，反向传播的梯度乘以从当前时间一直到初始时间的网络权重。因此，由于<strong>这种乘法积累，权重可以对传播的梯度具有非平凡的影响。如果权重很小，则梯度消失，而较大的权重导致梯度爆炸</strong>。为了纠正这种困难，引入了LSTM。</p><p>LSTMs是循环网络，它进一步<strong>配备了存储或内存组件</strong>，如图2.4所示，随着时间的推移积累信息。LSTM的<strong>内存单元是门控的</strong>，这样就可以从它读取或写入信息。值得注意的是，LSTMs还包含一个<strong>遗忘门，允许网络在不再需要信息时删除信息</strong>。LSTMs由<strong>三个不同的门控制(输入门、遗忘门和输出门)</strong>，以及内存单元状态ct。输入门由最新的输入xt和前一个状态ht−1控制,它被定义为<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kcpp1bjj20ks01ta9z.jpg" alt=""></p><p>其中，wi，ui，bi表示控制输入门的权重和偏差，σ通常是Sigmoid函数。 遗忘门同样被定义为<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kcponhhj20kj02jwef.jpg" alt=""></p><p>它由相应的权重和偏差控制，wf，uf，bf。 可以说，LSTM<strong>最重要的方面是它可以应对梯度消失和梯度爆炸</strong>。 在确定存储器单元的状态时，通过<strong>遗忘和输入门状态的相加组合来实现该能力</strong>，该状态又控制信息是否经由输出门传递到另一个单元。 具体而言分两步计算。 首先，根据估计候选单元状态<br><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kcpqhp8j20l302jjrb.jpg" alt=""></p><p>其中φ通常是双曲正切线（激活函数）。 其次，最终的单元状态最终由当前估计的状态gt和前一个状态ct-1控制，由输入和忘记门调制。<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kcpqv8zj20jm031q2t.jpg" alt=""></p><p>最后，使用单元的状态以及当前和先前的输入，输出门的值和LSTM单元的输出可以根据<br><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kcpsg0nj20ra07ujrj.jpg" alt=""></p><p><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kcpt8rkj20sn0gatd3.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第二章-多层网络&quot;&gt;&lt;a href=&quot;#第二章-多层网络&quot; class=&quot;headerlink&quot; title=&quot;第二章 多层网络&quot;&gt;&lt;/a&gt;第二章 多层网络&lt;/h1&gt;&lt;p&gt;本章简要概述了计算机视觉中最突出的多层网络。值得注意的是，虽然本章涵盖了文献中最重要的贡献，
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>What Do We Understand About Convolutional Networks翻译（一）</title>
+    <link href="http://cvweb.site/2018/10/13/what-do-we-understand%E7%BF%BB%E8%AF%91/"/>
+    <id>http://cvweb.site/2018/10/13/what-do-we-understand翻译/</id>
+    <published>2018-10-12T16:17:08.000Z</published>
+    <updated>2018-10-12T16:46:44.835Z</updated>
+    
+    <content type="html"><![CDATA[<p><code><strong>最近读了篇深度学习综述类的论文，读完对整个深度学习网络会有个新的了解，该论文是在2018年3月23号发表在了arXiv，论文正文部分长达80页，我会将翻译分成几块。</strong></code></p><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="1-1-动机"><a href="#1-1-动机" class="headerlink" title="1.1 动机"></a>1.1 动机</h3><p>在过去几年中，主要的计算机视觉研究都集中在卷积神经网络上，通常称为ConvNets或CNN。这些效果在广泛的分类和回归任务中产生了新的最先进的性能。相比之下，虽然这些方法的历史可以追溯到若干年，但对这些系统如何实现其卓越结果的理论理解滞后。事实上，目前计算机视觉领域的许多贡献都使用ConvNets作为一个黑盒子，它对于它的工作原理有一个非常模糊的想法，从科学的角度来看这是非常不令人满意的。特别是，有两个主要的互补问题：<br><strong>（1）对于学习方面（例如卷积核），它究竟学了什么？<br>（2）对于网络设计方面（例如层数，内核数，池化策略，非线性选择），为什么某些选择比其他选择更好？</strong><br>这些问题的答案不仅可以提高对ConvNets的科学理解，还可以提高它们的实际适用性。</p><p>此外，目前ConvNets的实现需要大量的数据用于训练，设计决策对性能有很大影响。 更深入的理论理解应该减少对数据驱动设计的依赖。 虽然实证研究调查了实施网络的运作，但迄今为止，他们的结果主要局限于内部处理的可视化，以了解ConvNet不同层面正在发生的事情。</p><h3 id="1-2-目标"><a href="#1-2-目标" class="headerlink" title="1.2 目标"></a>1.2 目标</h3><p>本文献将回顾多种卷积网络。重要的是，我们将通过用多种方法来讨论典型的卷积网络的各个组成部分，这些方法的设计决策基于生物学发现和合理的理论基础。此外，还将审查通过可视化和实证研究来理解ConvNets的不同尝试。最终目标是阐明ConvNet网络中涉及的每一层处理的作用，提炼我们目前对ConvNets的理解，并突出关键的开放问题。</p><h3 id="1-3-论文大纲"><a href="#1-3-论文大纲" class="headerlink" title="1.3 论文大纲"></a>1.3 论文大纲</h3><p>本报告的结构如下：本章的动机是需要回顾我们对卷积网络的理解。第2章将介绍各种多层网络，并介绍计算机视觉应用中最典型的网络。第3章将更具体地关注典型卷积网络的每个结构块，并从生物学和理论角度讨论不同组件的设计。最后，第4章将描述ConvNet设计的当前趋势以及对ConvNet理解的有效性，并强调仍然存在的一些突出不足之处。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;code&gt;&lt;strong&gt;最近读了篇深度学习综述类的论文，读完对整个深度学习网络会有个新的了解，该论文是在2018年3月23号发表在了arXiv，论文正文部分长达80页，我会将翻译分成几块。&lt;/strong&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Introduction
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hexo发布带图片博客</title>
+    <link href="http://cvweb.site/2018/10/11/hexo%E5%8F%91%E5%B8%83%E5%B8%A6%E5%9B%BE%E7%89%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://cvweb.site/2018/10/11/hexo发布带图片博客/</id>
+    <published>2018-10-11T15:32:29.000Z</published>
+    <updated>2018-10-11T17:22:53.943Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h2><p>1.修改hexo博客项目根目录_config.yml配置文件post_asset_folder项为true。</p><p>2.hexo new “hexo发布带图片博客”</p><p>3.在source/_post文件夹里面就会出现一个“hexo发布带图片博客.md”的文件和一个“hexo发布带图片博客”的文件夹。</p><p>4 最后在XXX.md中想引入图片时，先把图片复制到这个文件夹中，然后只需要在XXX.md中按照markdown的格式引入图片：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ![你想输入的替代文字](xxxx/图片名.jpg)</span><br></pre></td></tr></table></figure><p>注意： xxxx是这个md文件的名字，也是同名文件夹的名字。只需要有文件夹名字即可，不需要有什么绝对路径。你想引入的图片就只需要放入xxxx这个文件夹内就好了，很像引用相对路径。</p><p><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw4qm49v2kj20u00pe0yb.jpg" alt="嘿"></p><p>5 最后检查一下，hexo g生成页面后，进入public\2018\10\11\index.html文件中查看相关字段，可以发现，html标签内的语句是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"2018/10/11/xxxx/图片名.jpg"</span>&gt;，</span><br><span class="line">而不是&lt;img src=<span class="string">"xxxx/图片名.jpg&gt;</span></span><br></pre></td></tr></table></figure></p><p>这很重要，关乎你的网页是否可以真正加载你想插入的图片。</p><h2 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h2><p>本地source中建立img文件夹<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"img/图片名.jpg&gt;</span></span><br></pre></td></tr></table></figure></p><p>这个比较方便</p><h2 id="Method-3"><a href="#Method-3" class="headerlink" title="Method 3"></a>Method 3</h2><p>用图床，但可能不太稳定。<br>我用的新浪weibo，上传到相册里面，然后右键图片的复制图片连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![随便起名字](https://wx3.sinaimg.cn/.....b.jpg)</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h1&gt;&lt;h2 id=&quot;Method-1&quot;&gt;&lt;a href=&quot;#Method-1&quot; class=&quot;headerlink&quot; title=&quot;Method 1&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo+github搭建博客详细教程</title>
+    <link href="http://cvweb.site/2018/10/11/posthexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/"/>
+    <id>http://cvweb.site/2018/10/11/posthexo-github搭建博客详细教程/</id>
+    <published>2018-10-11T11:29:51.000Z</published>
+    <updated>2018-10-11T17:35:10.446Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="node-js安装"><a href="#node-js安装" class="headerlink" title="node.js安装"></a>node.js安装</h2><p>下载安装 node.js（<a href="https://nodejs.org/en/）" target="_blank" rel="noopener">https://nodejs.org/en/）</a> 如下图，选择左边的8.12.0LTS版<br><img src="https://wxt.sinaimg.cn/mw1024/8746d7begy1fw4r5yr0axj20gn05p3z5.jpg?tags=%5B%5D" alt=""><br><code>注：①安装途中可以自定义安装地址<br>②安装时会默认ADD to PATH，直接下一步即可</code></p><h3 id="测试安装情况"><a href="#测试安装情况" class="headerlink" title="测试安装情况"></a>测试安装情况</h3><p>首先用Win+R调出运行窗口，然后输入cmd打开cmd窗口<br>输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node-v</span><br></pre></td></tr></table></figure></p><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><p>官网下载git（<a href="https://gitforwindows.org/）" target="_blank" rel="noopener">https://gitforwindows.org/）</a><br>除了下面两步改一下，其它都是Next<br>这里左下角打勾，然后NEXT<br><img src="https://wx4.sinaimg.cn/mw1024/8746d7begy1fw4r5ysuohj20bd07waat.jpg" alt=""></p><p>这里选择第二项，然后Next<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw4r5yv2klj20b9081tav.jpg" alt=""></p><h2 id="github-SSH配置（与github关联）"><a href="#github-SSH配置（与github关联）" class="headerlink" title="github SSH配置（与github关联）"></a>github SSH配置（与github关联）</h2><p>找到git安装目录，打开git-bash，然后输入</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen –t rsa –C “邮箱号（GitHub账号）”</span><br></pre></td></tr></table></figure><p>然后一直回车，就会生成id_ras文件（<strong>记住地址,后面要打开</strong>）</p><p><strong>打开GitHub，选择Settings,New SSH key</strong><br><img src="https://wx2.sinaimg.cn/mw1024/8746d7begy1fw4rdbq4ekj20880aqdfr.jpg" alt=""></p><p><img src="https://wx2.sinaimg.cn/mw1024/8746d7begy1fw4rdbudn7j20mh061q3t.jpg" alt=""></p><p><strong> 记事本打开刚刚生成的.ssh文件下的id_ras文件，复制到Key栏</strong><br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw4rdbtdmdj20nu02uaag.jpg" alt=""></p><p><img src="https://wx4.sinaimg.cn/mw1024/8746d7begy1fw4rdbvogpj20jc04ldhk.jpg" alt=""></p><p>接着打开git，测试连接是否成功</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure><p>如果提示Hi sysuleo You’ve successfully authenticated, but GitHub does not provide shell access.说明连接成功。</p><h2 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h2><p>首先，我在E盘新建了个Myblog文件夹，然后打开cmd窗口，cd到Myblog文件夹，然后输入</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line">$ npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">$ hexo init liuwBlog(后面是你的博客名)</span><br></pre></td></tr></table></figure><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>cd 到博客目录，然后输入</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br><span class="line"></span><br><span class="line">$ hexo s –p 5555</span><br></pre></td></tr></table></figure><p>然后在浏览器输入（<a href="http://localhost:5555）" target="_blank" rel="noopener">http://localhost:5555）</a> 就是我们的博客初始界面</p><h2 id="发布到github"><a href="#发布到github" class="headerlink" title="发布到github"></a>发布到github</h2><p>在Github上创建名字为.github.io的repository。请务必注意该repo的名字，<strong>必须保持格式 username.github.io，其中 username</strong>替换成你的github账户名，这里创建的repo为sysuleo.github.io</p><p>打开本地的MyBlog文件夹项目内的_config.yml配置文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ deploy :</span><br><span class="line"><span class="built_in">type</span>: git</span><br><span class="line">repository: https://github.com/sysuleo/sysuleo.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure><p>然后依次运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git –save</span><br><span class="line">$ hexo d</span><br><span class="line">$ git config --global user.email <span class="string">"you@example.com"</span></span><br><span class="line">$ git config --global user.name <span class="string">"（github名）"</span></span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure><p>输入用户名密码<br>然后输入在浏览器输入sysuleo.github.io出来博客页面就成功了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;node-js安装&quot;&gt;&lt;a href=&quot;#node-js安装&quot; class=&quot;headerlink&quot; title=&quot;node.js安装&quot;&gt;&lt;/a&gt;node.js安装&lt;/h2&gt;&lt;p&gt;下载安装 node.js（&lt;a href=&quot;https://nodejs.org/e
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://cvweb.site/2018/10/11/hello-world/"/>
+    <id>http://cvweb.site/2018/10/11/hello-world/</id>
+    <published>2018-10-11T07:02:36.371Z</published>
+    <updated>2018-10-11T15:24:47.241Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
