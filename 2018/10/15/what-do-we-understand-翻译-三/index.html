@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://cvweb.site">
-  <title>LiuwBlog</title>
+  <title>what do we understand about Convolutional Networks 翻译(三) | LiuwBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="LiuwBlog">
-<meta property="og:url" content="http://cvweb.site/index.html">
+  <meta name="description" content="2.1.3卷积网络卷积网络（ConvNets）是一种特殊类型的神经网络，特别适用于计算机视觉应用，因为它们能够通过局部连接（local connection）使representations分层抽象化。有两个关键的理念推动计算机视觉中卷积网络结构的成功。首先，ConvNets利用图像的2D结构以及邻域内的像素通常高度相关的特性。因此，ConvNets避免在所有像素之间使用一对一连接（即大多数神经网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="what do we understand about Convolutional Networks 翻译(三)">
+<meta property="og:url" content="http://cvweb.site/2018/10/15/what-do-we-understand-翻译-三/index.html">
 <meta property="og:site_name" content="LiuwBlog">
+<meta property="og:description" content="2.1.3卷积网络卷积网络（ConvNets）是一种特殊类型的神经网络，特别适用于计算机视觉应用，因为它们能够通过局部连接（local connection）使representations分层抽象化。有两个关键的理念推动计算机视觉中卷积网络结构的成功。首先，ConvNets利用图像的2D结构以及邻域内的像素通常高度相关的特性。因此，ConvNets避免在所有像素之间使用一对一连接（即大多数神经网">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://cvweb.site/2018/10/15/what-do-we-understand-翻译-三/">
+<meta property="og:image" content="http://cvweb.site/2018/10/15/what-do-we-understand-翻译-三/">
+<meta property="og:updated_time" content="2018-10-15T09:35:57.075Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LiuwBlog">
+<meta name="twitter:title" content="what do we understand about Convolutional Networks 翻译(三)">
+<meta name="twitter:description" content="2.1.3卷积网络卷积网络（ConvNets）是一种特殊类型的神经网络，特别适用于计算机视觉应用，因为它们能够通过局部连接（local connection）使representations分层抽象化。有两个关键的理念推动计算机视觉中卷积网络结构的成功。首先，ConvNets利用图像的2D结构以及邻域内的像素通常高度相关的特性。因此，ConvNets避免在所有像素之间使用一对一连接（即大多数神经网">
+<meta name="twitter:image" content="http://cvweb.site/2018/10/15/what-do-we-understand-翻译-三/">
   
     <link rel="alternative" href="/atom.xml" title="LiuwBlog" type="application/atom+xml">
   
@@ -146,16 +153,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-what-do-we-understand-翻译-三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-what-do-we-understand-翻译-三" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/15/what-do-we-understand-翻译-三/">what do we understand about Convolutional Networks 翻译(三)</a>
+    <h1 class="article-title" itemprop="name">
+      what do we understand about Convolutional Networks 翻译(三)
     </h1>
   
 
@@ -189,6 +194,27 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -196,16 +222,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/15/what-do-we-understand-翻译-三/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://cvweb.site/2018/10/15/what-do-we-understand-翻译-三/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/14/what-do-we-understand-翻译-二/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">what do we understand about Convolutional Networks 翻译(二)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -225,390 +310,14 @@
 
 
 
-
   
-    <article id="post-what-do-we-understand-翻译-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/14/what-do-we-understand-翻译-二/">what do we understand about Convolutional Networks 翻译(二)</a>
-    </h1>
   
 
-        
-        <a href="/2018/10/14/what-do-we-understand-翻译-二/" class="archive-article-date">
-  	<time datetime="2018-10-14T01:58:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="第二章-多层网络"><a href="#第二章-多层网络" class="headerlink" title="第二章 多层网络"></a>第二章 多层网络</h1><p>本章简要概述了计算机视觉中最突出的多层网络。值得注意的是，虽然本章涵盖了文献中最重要的贡献，但它不会对这些论文进行综合地回顾，因为这些可在通过精度论文获得。相反，本章的<strong>目的是为文献的其余部分设置阶段，并详细介绍和讨论目前应用于视觉处理的卷积网络</strong>。</p>
-<h2 id="2-1多层网络"><a href="#2-1多层网络" class="headerlink" title="2.1多层网络"></a>2.1多层网络</h2><p>在成功开发基于深度学习的网络之前，用于识别的最先进的计算机视觉系统依赖于<strong>两个独立但互补的步骤</strong>。首先，通过一组手工设计的操作（例如，具有基础数据，局部或全局编码方法的卷积）将输入数据转换为合适的形式。该变换通常需要找到输入的具体或抽象的特征，同时根据手头的task加入几个不变性。这种转换的目标是为了更容易被分类器分类。其次，变换后的数据用于训练某种分类器（例如支持向量机）以识别输入信号的内容。因此<strong>任何分类器的性能通常都严重受到转换的影响</strong>。</p>
-<p>多层结构网络<strong>不仅要学习分类器，而且还要直接从数据中学习所需的转换操作</strong>，从而可以从不同视角看问题。这种学习形式通常被称为<strong>特征学习</strong>，当在多层网络的上下文中使用时称为<strong>深度学习</strong>。</p>
-<p>多层结构可以定义为<strong>从输入中提取多个抽象的有用信息的计算模型</strong>。通常，多层网络在较高网络层强调输入中的重要信息，同时对较不显著的变化越来越robust。大多数多层网络<strong>使用交替的线性和非线性函数堆叠简单的构建块模块</strong>。多年来，提出了大量的各种多层网络，本节将介绍计算机视觉应用中这些最突出的网络。特别是，由于其突出性，人工神经网络将成为焦点。为了简洁起见，下面将更简单地将这种网络称为神经网络。</p>
-<h3 id="2-1-1神经网络"><a href="#2-1-1神经网络" class="headerlink" title="2.1.1神经网络"></a>2.1.1神经网络</h3><p>典型的神经网络结构由输入层x，输出层y和多个隐藏层h组成，其中每个层由多个单元组成，如图2.1所示。 通常，每个隐藏单元hj接收来自前一层的所有单元的输入，并且被定义为输入的加权组合，随后是非线性，根据<br><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kbq3hlrj20br01twe9.jpg" alt=""></p>
-<p>其中，Wij是控制输入单元和隐藏单元之间连接强度的权重，bj是隐藏单元的小偏差，F（）是一些非线性函数，例如sigmoid。</p>
-<p>深度神经网络可以被视为Rosenblatt的感知器和多层感知器的现代实例。 尽管神经网络模型已存在多年（即自1960年代以来），但直到最近才被大量使用。 这种延迟有很多原因。 最初的负面结果显示<strong>感知器无法对XOR这样的简单操作进行建模</strong>，阻碍了对感知器进行一段时间的进一步研究，直到它们被推广到多层。 此外，<strong>缺乏适当的训练算法会减慢进展，直到反向传播算法的普及</strong>。 然而，阻碍多层神经网络发展的<strong>更大障碍是它们依赖于非常大量的参数</strong>，这反过来意味着需要<strong>大量的训练数据和计算资源</strong>来支持参数的学习。</p>
-<p><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kbq5unrj20be082js0.jpg" alt="典型的神经网络"></p>
-<p>使用<strong>受限玻尔兹曼机器（RBM）</strong>，在深度神经网络领域取得重大进展的主要贡献是<strong>分层无监督预训练</strong>。 受限制的Boltzman机器可以看作是两层神经网络，在其受限制的形式中，只允许前馈连接。</p>
-<p>在图像识别的背景下，用于训练RBM的无监督学习方法可以<strong>归纳为三个步骤</strong>。 首先，对于每个像素xi，并且以一组随机权重wij和偏差bj开始，每个单元的隐藏状态hj被设置为1，概率为pj。 概率定义为<br>！<a href="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kbq54vnj20cq01qt8h.jpg" target="_blank" rel="noopener"></a></p>
-<p>其中，σ（y）= 1 /（1 + exp（-y））。 第二，一旦基于等式2.2随机地设置了所有隐藏状态，通过概率pi，将每个像素xi设置为1来执行重建图像的尝试。 第三，通过基于由给出的重建误差更新权重和偏差来校正隐藏单元。<br><img src="http://wx1.sinaimg.cn/large/8746d7begy1fw7kbq5q53j20d2016gle.jpg" alt=""></p>
-<p>其中α是学习率，<xi hj=""> 是像素Xi和隐藏单元hj在相关联的次数。整个过程重复N次或直到误差下降到预设阈值τ。在训练一个层之后，其输出被用作层次结构中下一层的输入，该层又按照相同的过程进行训练。通常，在预训练所有网络层之后，通过使用梯度下降的误差反向传播，它们进一步通过标记数据进行微调。使用该<strong>分层无监督预训练允许训练深度神经网络而不需要大量标记数据</strong>，因为无监督RBM预训练提供了用于经验上有用的初始化各种网络参数的方式。堆叠RBM的神经网络首先成功地用作降维，并应用于人脸识别，其中它们被看为一种自动编码器。简而言之，自动编码器可以定义为由两个主要部分组成的多层神经网络：首先，<strong>编码器将输入数据转换为特征向量</strong>;第二，<strong>解码器将生成的特征向量映射回输入空间</strong>;见图2.2。通过最小化输入与其重建版本之间的重建误差来学习自动编码器的参数。<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kbq6zsrj20sl0ah76j.jpg" alt=""></xi></p>
-<p>除了基于RBM的自动编码器之外，后来提出了几种类型的自动编码器。每个自动编码器都<strong>引入了一种不同的正则化方法</strong>，即使在执行不同的不变性时也能阻止网络过拟合。示例包括<strong>稀疏自动编码器（SAE），去噪自动编码器（DAE）和压缩自动编码器（CAE）</strong>。稀疏自动编码器允许中间特征的大小（即由编码器部分生成）大于输入的大小，同时通过错误输出来强制稀疏。相比之下，去噪自动编码器通过人为破坏重建清晰输入来达成重建的目标，目的是学习强robust的representation。类似地，压缩自动编码器构建通过进一步惩罚对噪声最敏感的单元来对自动编码器进行去噪处理。各种类型的自动编码器的更详细的介绍可以在别处找到。</p>
-<h3 id="2-1-2递归神经网络"><a href="#2-1-2递归神经网络" class="headerlink" title="2.1.2递归神经网络"></a>2.1.2递归神经网络</h3><p>在考虑依赖于顺序输入的任务时，最成功的多层架构之一是递归神经网络（RNN）。 如图2.3所示，RNN可以看作是一种特殊类型的神经网络，其中每个隐藏单元从当前时间输入的数据以及前一时间的状态获取输入。 RNN的输出定义为<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kbq6wxpj20ir0220sm.jpg" alt=""><br><img src="https://wx2.sinaimg.cn/mw1024/8746d7begy1fw7kbq7oeij20u00e5wh8.jpg" alt=""></p>
-<p>其中σ是非线性函数，wi和ui是控制当前和过去信息的相对重要性的参数。尽管RNN看起来是强大的网络结构，但它们的<strong>主要问题之一是对周期长的建模能力有限</strong>。这种限制<strong>归因于在通过多个时间步骤传播误差时可能发生的爆炸或消失梯度导致的训练差异</strong>。特别是，在训练期间，反向传播的梯度乘以从当前时间一直到初始时间的网络权重。因此，由于<strong>这种乘法积累，权重可以对传播的梯度具有非平凡的影响。如果权重很小，则梯度消失，而较大的权重导致梯度爆炸</strong>。为了纠正这种困难，引入了LSTM。</p>
-<p>LSTMs是循环网络，它进一步<strong>配备了存储或内存组件</strong>，如图2.4所示，随着时间的推移积累信息。LSTM的<strong>内存单元是门控的</strong>，这样就可以从它读取或写入信息。值得注意的是，LSTMs还包含一个<strong>遗忘门，允许网络在不再需要信息时删除信息</strong>。LSTMs由<strong>三个不同的门控制(输入门、遗忘门和输出门)</strong>，以及内存单元状态ct。输入门由最新的输入xt和前一个状态ht−1控制,它被定义为<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kcpp1bjj20ks01ta9z.jpg" alt=""></p>
-<p>其中，wi，ui，bi表示控制输入门的权重和偏差，σ通常是Sigmoid函数。 遗忘门同样被定义为<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kcponhhj20kj02jwef.jpg" alt=""></p>
-<p>它由相应的权重和偏差控制，wf，uf，bf。 可以说，LSTM<strong>最重要的方面是它可以应对梯度消失和梯度爆炸</strong>。 在确定存储器单元的状态时，通过<strong>遗忘和输入门状态的相加组合来实现该能力</strong>，该状态又控制信息是否经由输出门传递到另一个单元。 具体而言分两步计算。 首先，根据估计候选单元状态<br><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kcpqhp8j20l302jjrb.jpg" alt=""></p>
-<p>其中φ通常是双曲正切线（激活函数）。 其次，最终的单元状态最终由当前估计的状态gt和前一个状态ct-1控制，由输入和忘记门调制。<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw7kcpqv8zj20jm031q2t.jpg" alt=""></p>
-<p>最后，使用单元的状态以及当前和先前的输入，输出门的值和LSTM单元的输出可以根据<br><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kcpsg0nj20ra07ujrj.jpg" alt=""></p>
-<p><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw7kcpt8rkj20sn0gatd3.jpg" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/14/what-do-we-understand-翻译-二/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-what-do-we-understand翻译" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/13/what-do-we-understand翻译/">What Do We Understand About Convolutional Networks翻译（一）</a>
-    </h1>
   
 
-        
-        <a href="/2018/10/13/what-do-we-understand翻译/" class="archive-article-date">
-  	<time datetime="2018-10-12T16:17:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code><strong>最近读了篇深度学习综述类的论文，读完对整个深度学习网络会有个新的了解，该论文是在2018年3月23号发表在了arXiv，论文正文部分长达80页，我会将翻译分成几块。</strong></code></p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="1-1-动机"><a href="#1-1-动机" class="headerlink" title="1.1 动机"></a>1.1 动机</h3><p>在过去几年中，主要的计算机视觉研究都集中在卷积神经网络上，通常称为ConvNets或CNN。这些效果在广泛的分类和回归任务中产生了新的最先进的性能。相比之下，虽然这些方法的历史可以追溯到若干年，但对这些系统如何实现其卓越结果的理论理解滞后。事实上，目前计算机视觉领域的许多贡献都使用ConvNets作为一个黑盒子，它对于它的工作原理有一个非常模糊的想法，从科学的角度来看这是非常不令人满意的。特别是，有两个主要的互补问题：<br><strong>（1）对于学习方面（例如卷积核），它究竟学了什么？<br>（2）对于网络设计方面（例如层数，内核数，池化策略，非线性选择），为什么某些选择比其他选择更好？</strong><br>这些问题的答案不仅可以提高对ConvNets的科学理解，还可以提高它们的实际适用性。</p>
-<p>此外，目前ConvNets的实现需要大量的数据用于训练，设计决策对性能有很大影响。 更深入的理论理解应该减少对数据驱动设计的依赖。 虽然实证研究调查了实施网络的运作，但迄今为止，他们的结果主要局限于内部处理的可视化，以了解ConvNet不同层面正在发生的事情。</p>
-<h3 id="1-2-目标"><a href="#1-2-目标" class="headerlink" title="1.2 目标"></a>1.2 目标</h3><p>本文献将回顾多种卷积网络。重要的是，我们将通过用多种方法来讨论典型的卷积网络的各个组成部分，这些方法的设计决策基于生物学发现和合理的理论基础。此外，还将审查通过可视化和实证研究来理解ConvNets的不同尝试。最终目标是阐明ConvNet网络中涉及的每一层处理的作用，提炼我们目前对ConvNets的理解，并突出关键的开放问题。</p>
-<h3 id="1-3-论文大纲"><a href="#1-3-论文大纲" class="headerlink" title="1.3 论文大纲"></a>1.3 论文大纲</h3><p>本报告的结构如下：本章的动机是需要回顾我们对卷积网络的理解。第2章将介绍各种多层网络，并介绍计算机视觉应用中最典型的网络。第3章将更具体地关注典型卷积网络的每个结构块，并从生物学和理论角度讨论不同组件的设计。最后，第4章将描述ConvNet设计的当前趋势以及对ConvNet理解的有效性，并强调仍然存在的一些突出不足之处。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/13/what-do-we-understand翻译/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hexo发布带图片博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/11/hexo发布带图片博客/">hexo发布带图片博客</a>
-    </h1>
   
 
-        
-        <a href="/2018/10/11/hexo发布带图片博客/" class="archive-article-date">
-  	<time datetime="2018-10-11T15:32:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h2><p>1.修改hexo博客项目根目录_config.yml配置文件post_asset_folder项为true。</p>
-<p>2.hexo new “hexo发布带图片博客”</p>
-<p>3.在source/_post文件夹里面就会出现一个“hexo发布带图片博客.md”的文件和一个“hexo发布带图片博客”的文件夹。</p>
-<p>4 最后在XXX.md中想引入图片时，先把图片复制到这个文件夹中，然后只需要在XXX.md中按照markdown的格式引入图片：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ![你想输入的替代文字](xxxx/图片名.jpg)</span><br></pre></td></tr></table></figure>
-<p>注意： xxxx是这个md文件的名字，也是同名文件夹的名字。只需要有文件夹名字即可，不需要有什么绝对路径。你想引入的图片就只需要放入xxxx这个文件夹内就好了，很像引用相对路径。</p>
-<p><img src="https://wx3.sinaimg.cn/mw1024/8746d7begy1fw4qm49v2kj20u00pe0yb.jpg" alt="嘿"></p>
-<p>5 最后检查一下，hexo g生成页面后，进入public\2018\10\11\index.html文件中查看相关字段，可以发现，html标签内的语句是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"2018/10/11/xxxx/图片名.jpg"</span>&gt;，</span><br><span class="line">而不是&lt;img src=<span class="string">"xxxx/图片名.jpg&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这很重要，关乎你的网页是否可以真正加载你想插入的图片。</p>
-<h2 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h2><p>本地source中建立img文件夹<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"img/图片名.jpg&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这个比较方便</p>
-<h2 id="Method-3"><a href="#Method-3" class="headerlink" title="Method 3"></a>Method 3</h2><p>用图床，但可能不太稳定。<br>我用的新浪weibo，上传到相册里面，然后右键图片的复制图片连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![随便起名字](https://wx3.sinaimg.cn/.....b.jpg)</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/11/hexo发布带图片博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-posthexo-github搭建博客详细教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/11/posthexo-github搭建博客详细教程/">Hexo+github搭建博客详细教程</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/11/posthexo-github搭建博客详细教程/" class="archive-article-date">
-  	<time datetime="2018-10-11T11:29:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="node-js安装"><a href="#node-js安装" class="headerlink" title="node.js安装"></a>node.js安装</h2><p>下载安装 node.js（<a href="https://nodejs.org/en/）" target="_blank" rel="noopener">https://nodejs.org/en/）</a> 如下图，选择左边的8.12.0LTS版<br><img src="https://wxt.sinaimg.cn/mw1024/8746d7begy1fw4r5yr0axj20gn05p3z5.jpg?tags=%5B%5D" alt=""><br><code>注：①安装途中可以自定义安装地址<br>②安装时会默认ADD to PATH，直接下一步即可</code></p>
-<h3 id="测试安装情况"><a href="#测试安装情况" class="headerlink" title="测试安装情况"></a>测试安装情况</h3><p>首先用Win+R调出运行窗口，然后输入cmd打开cmd窗口<br>输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node-v</span><br></pre></td></tr></table></figure></p>
-<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><p>官网下载git（<a href="https://gitforwindows.org/）" target="_blank" rel="noopener">https://gitforwindows.org/）</a><br>除了下面两步改一下，其它都是Next<br>这里左下角打勾，然后NEXT<br><img src="https://wx4.sinaimg.cn/mw1024/8746d7begy1fw4r5ysuohj20bd07waat.jpg" alt=""></p>
-<p>这里选择第二项，然后Next<br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw4r5yv2klj20b9081tav.jpg" alt=""></p>
-<h2 id="github-SSH配置（与github关联）"><a href="#github-SSH配置（与github关联）" class="headerlink" title="github SSH配置（与github关联）"></a>github SSH配置（与github关联）</h2><p>找到git安装目录，打开git-bash，然后输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen –t rsa –C “邮箱号（GitHub账号）”</span><br></pre></td></tr></table></figure>
-<p>然后一直回车，就会生成id_ras文件（<strong>记住地址,后面要打开</strong>）</p>
-<p><strong>打开GitHub，选择Settings,New SSH key</strong><br><img src="https://wx2.sinaimg.cn/mw1024/8746d7begy1fw4rdbq4ekj20880aqdfr.jpg" alt=""></p>
-<p><img src="https://wx2.sinaimg.cn/mw1024/8746d7begy1fw4rdbudn7j20mh061q3t.jpg" alt=""></p>
-<p><strong> 记事本打开刚刚生成的.ssh文件下的id_ras文件，复制到Key栏</strong><br><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fw4rdbtdmdj20nu02uaag.jpg" alt=""></p>
-<p><img src="https://wx4.sinaimg.cn/mw1024/8746d7begy1fw4rdbvogpj20jc04ldhk.jpg" alt=""></p>
-<p>接着打开git，测试连接是否成功</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<p>如果提示Hi sysuleo You’ve successfully authenticated, but GitHub does not provide shell access.说明连接成功。</p>
-<h2 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h2><p>首先，我在E盘新建了个Myblog文件夹，然后打开cmd窗口，cd到Myblog文件夹，然后输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line">$ npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">$ hexo init liuwBlog(后面是你的博客名)</span><br></pre></td></tr></table></figure>
-<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>cd 到博客目录，然后输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br><span class="line"></span><br><span class="line">$ hexo s –p 5555</span><br></pre></td></tr></table></figure>
-<p>然后在浏览器输入（<a href="http://localhost:5555）" target="_blank" rel="noopener">http://localhost:5555）</a> 就是我们的博客初始界面</p>
-<h2 id="发布到github"><a href="#发布到github" class="headerlink" title="发布到github"></a>发布到github</h2><p>在Github上创建名字为.github.io的repository。请务必注意该repo的名字，<strong>必须保持格式 username.github.io，其中 username</strong>替换成你的github账户名，这里创建的repo为sysuleo.github.io</p>
-<p>打开本地的MyBlog文件夹项目内的_config.yml配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ deploy :</span><br><span class="line">	<span class="built_in">type</span>: git</span><br><span class="line">	repository: https://github.com/sysuleo/sysuleo.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure>
-<p>然后依次运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git –save</span><br><span class="line">$ hexo d</span><br><span class="line">$ git config --global user.email <span class="string">"you@example.com"</span></span><br><span class="line">$ git config --global user.name <span class="string">"（github名）"</span></span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<p>输入用户名密码<br>然后输入在浏览器输入sysuleo.github.io出来博客页面就成功了</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/11/posthexo-github搭建博客详细教程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/11/hello-world/" class="archive-article-date">
-  	<time datetime="2018-10-11T07:02:36.371Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/11/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -631,8 +340,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
