@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://cvweb.site">
-  <title>Archives | LiuwBlog</title>
+  <title>数图笔记一 | LiuwBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="LiuwBlog">
-<meta property="og:url" content="http://cvweb.site/archives/index.html">
+  <meta name="description" content="date: 2018-10-16 16:41:38 带通滤波器：去除网状噪声陷波滤波器：找到噪声模型利用陷波滤波器消除周期性噪声，傅里叶反变换后得到噪声图。找出原型后理论上可以用原图-噪声图实际上噪声图像素微量偏少，原图-增量噪声图。 Q：如何度量图像噪声小：1.平滑与否2.看方差。方差大，噪声大。 带阻滤波器带通滤波器带阻陷波滤波器带通陷波滤波器 线性，移不变性所有函数对冲击函数做卷积，得到函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数图笔记一">
+<meta property="og:url" content="http://cvweb.site/2018/10/16/数图笔记一/index.html">
 <meta property="og:site_name" content="LiuwBlog">
+<meta property="og:description" content="date: 2018-10-16 16:41:38 带通滤波器：去除网状噪声陷波滤波器：找到噪声模型利用陷波滤波器消除周期性噪声，傅里叶反变换后得到噪声图。找出原型后理论上可以用原图-噪声图实际上噪声图像素微量偏少，原图-增量噪声图。 Q：如何度量图像噪声小：1.平滑与否2.看方差。方差大，噪声大。 带阻滤波器带通滤波器带阻陷波滤波器带通陷波滤波器 线性，移不变性所有函数对冲击函数做卷积，得到函数">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-16T09:39:54.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LiuwBlog">
+<meta name="twitter:title" content="数图笔记一">
+<meta name="twitter:description" content="date: 2018-10-16 16:41:38 带通滤波器：去除网状噪声陷波滤波器：找到噪声模型利用陷波滤波器消除周期性噪声，傅里叶反变换后得到噪声图。找出原型后理论上可以用原图-噪声图实际上噪声图像素微量偏少，原图-增量噪声图。 Q：如何度量图像噪声小：1.平滑与否2.看方差。方差大，噪声大。 带阻滤波器带通滤波器带阻陷波滤波器带通陷波滤波器 线性，移不变性所有函数对冲击函数做卷积，得到函数">
   
     <link rel="alternative" href="/atom.xml" title="LiuwBlog" type="application/atom+xml">
   
@@ -146,282 +150,162 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-数图笔记一" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      数图笔记一
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/16/数图笔记一/" class="archive-article-date">
+
+        
+        <a href="/2018/10/16/数图笔记一/" class="archive-article-date">
   	<time datetime="2018-10-16T08:41:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/16/数图笔记一/">数图笔记一</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>date: 2018-10-16 16:41:38</strong></p>
+<h1 id="带通滤波器：去除网状噪声"><a href="#带通滤波器：去除网状噪声" class="headerlink" title="带通滤波器：去除网状噪声"></a>带通滤波器：去除网状噪声</h1><h1 id="陷波滤波器：找到噪声模型"><a href="#陷波滤波器：找到噪声模型" class="headerlink" title="陷波滤波器：找到噪声模型"></a>陷波滤波器：找到噪声模型</h1><p>利用陷波滤波器消除周期性噪声，傅里叶反变换后得到噪声图。找出原型后理论上可以用原图-噪声图<br>实际上噪声图像素微量偏少，原图-增量噪声图。</p>
+<p>Q：如何度量图像噪声小：<br>1.平滑与否<br>2.看方差。方差大，噪声大。</p>
+<p>带阻滤波器<br>带通滤波器<br>带阻陷波滤波器<br>带通陷波滤波器</p>
+<h1 id="线性，移不变性"><a href="#线性，移不变性" class="headerlink" title="线性，移不变性"></a>线性，移不变性</h1><p>所有函数对冲击函数做卷积，得到函数本身</p>
+<h2 id="去卷积-估计退化函数"><a href="#去卷积-估计退化函数" class="headerlink" title="去卷积 估计退化函数"></a>去卷积 估计退化函数</h2><p>g（x,y)=h(x,y)*f(x,y)+n(x,y)如何算出h求出f<br>G(x,y)=H(x,y)F(x,y)+N(x,y) 一般在频率域去卷积<br>(1)观察估计法  找出H（x,y)<br>(2)实验法<br>(3)模型估计法</p>
+<p>##逆滤波去模糊</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://cvweb.site/2018/10/16/数图笔记一/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/16/what-do-we-understand-翻译-四/" class="archive-article-date">
-  	<time datetime="2018-10-16T02:35:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/16/what-do-we-understand-翻译-四/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">What Do We Understand About Convolutional Networks翻译（四）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/16/what-do-we-understand-翻译-四/">What Do We Understand About Convolutional Networks翻译（四）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/深度学习//" class="article-tag-list-link color5">深度学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/15/what-do-we-understand-翻译-三/" class="archive-article-date">
-  	<time datetime="2018-10-15T08:50:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-15</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/15/what-do-we-understand-翻译-三/">what do we understand about Convolutional Networks 翻译(三)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/深度学习//" class="article-tag-list-link color5">深度学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/14/what-do-we-understand-翻译-二/" class="archive-article-date">
-  	<time datetime="2018-10-14T01:58:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/14/what-do-we-understand-翻译-二/">what do we understand about Convolutional Networks 翻译(二)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/深度学习//" class="article-tag-list-link color5">深度学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/13/what-do-we-understand翻译/" class="archive-article-date">
-  	<time datetime="2018-10-12T16:17:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/13/what-do-we-understand翻译/">What Do We Understand About Convolutional Networks翻译（一）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/深度学习//" class="article-tag-list-link color5">深度学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/11/hexo发布带图片博客/" class="archive-article-date">
-  	<time datetime="2018-10-11T15:32:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/11/hexo发布带图片博客/">hexo发布带图片博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/11/posthexo-github搭建博客详细教程/" class="archive-article-date">
-  	<time datetime="2018-10-11T11:29:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/11/posthexo-github搭建博客详细教程/">Hexo+github搭建博客详细教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/11/hello-world/" class="archive-article-date">
-  	<time datetime="2018-10-11T07:02:36.371Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -444,8 +328,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
