@@ -148,6 +148,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-整数拆分算法详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/16/整数拆分算法详解/">整数拆分算法详解</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/16/整数拆分算法详解/" class="archive-article-date">
+  	<time datetime="2018-10-16T14:53:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>输入一个N，输出所有拆分的方式。如输入3</p>
+<p>输出1+1+1<br>    1+2<br>    3</p>
+<h2 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h2><p>用一个数组res[]存放拆分的解，用全局变量存放拆分的方法数。divN（n，k）使用n表示要分解的整数，k表示res数组下标，即第k次拆分。先从divN（n，1）开始，用num表示第k个拆分的数，即res[k]=num，让num在[1，n]内遍历。用rest=n-num表示拆分后剩下的整数值。若rest等于零，代表本次拆分结束，输出拆分解。否则处理第k+1个数组元素，即divN（rest，k+1）,依次类推，直到rest为0输出结果。</p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>divN（int n，int k）： n表示要分解的整数，k表示res数组下标，即第k次拆分。<br>res[10000]： 存储划分的结果，由于数组长度限制，最大的整数不能超过10000。<br>times ： 全局变量存放拆分的方法数。</p>
+<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "stdafx.h"</span></span><br><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;stdlib.h&gt;</span></span><br><span class="line">int res[10000] = &#123; 0 &#125;; //res数组存放解</span><br><span class="line">int <span class="built_in">times</span> = 0; //<span class="built_in">times</span>计算拆分的次数</span><br><span class="line">void divN(int n, int k) &#123; //n是需要拆分的整数，k是指res数组的下标</span><br><span class="line">	int rest; //存放拆分后剩余的整数</span><br><span class="line">	<span class="keyword">for</span> (int num = 1;num &lt;= n; num++) &#123;  //从1开始尝试拆分</span><br><span class="line"><span class="keyword">if</span> (num &gt;= res[k - 1] ) &#123; //拆分的解要大于或等于前一个解保证不重复</span><br><span class="line">			res[k] = num; //将这次拆分存放在res数组中</span><br><span class="line">			rest = n - num; //剩下的是n-num</span><br><span class="line">			<span class="keyword">if</span> (rest == 0) &#123; //如果没有剩下的，说明本次拆分结束</span><br><span class="line">				<span class="built_in">times</span>++;  //拆分次数加1</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%3d："</span>, <span class="built_in">times</span>);</span><br><span class="line">				<span class="keyword">for</span> (int j = 1; j &lt; k; j++) &#123;  //输出解</span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"%d+"</span>, res[j]);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, res[k]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> divN(rest, k + 1);  //如果有剩下的，继续求出res[k+1]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Please enter a integer N:"</span>);</span><br><span class="line">	scanf_s(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	divN(n, 1);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"there are %d ways to divide the integer %d."</span>, <span class="built_in">times</span>,n);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运行结果截图"><a href="#运行结果截图" class="headerlink" title="运行结果截图"></a>运行结果截图</h2><p><img src="https://wx4.sinaimg.cn/mw1024/8746d7begy1fwaye54wtlj20k00fi3yl.jpg" alt=""></p>
+<p><img src="https://wx4.sinaimg.cn/mw1024/8746d7begy1fwaye54wzoj20mc0flq36.jpg" alt=""></p>
+<p><img src="https://wx1.sinaimg.cn/mw1024/8746d7begy1fwaye59t59j211b0ss74w.jpg" alt=""></p>
+<h2 id="存在问题及改进设想"><a href="#存在问题及改进设想" class="headerlink" title="存在问题及改进设想"></a>存在问题及改进设想</h2><p>数组长度为10000，大于10000的数就不能分解了，若要分解更大的数。方法有二:<br>方法一：扩大res数组的容量，如res[1000000]，但这样对于较小的数拆分就十分浪费空间了。</p>
+<p> 方法二：声明一个整形指针变量int <em>res,和一个指向初始位置的指针int </em>p=res，每次赋值可以为*res=num，然后res++准备存储下一位分解的数。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法设计与分析//" class="article-tag-list-link color3">算法设计与分析</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/16/整数拆分算法详解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数图笔记一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
